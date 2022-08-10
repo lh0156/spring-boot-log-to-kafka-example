@@ -11,7 +11,7 @@
     <Appenders>
         <!-- Kafka Audit Appender only forwards messages with the "AuditRecord" marker -->
         <!-- We put only the message here assuming it will be formatted json-->
-        <Kafka name="kafkaAuditAppender" topic="${kafka.topic.audit}">
+        <Kafka name="kafkaAuditAppender" topic="aimframework">
             <PatternLayout pattern="%message%n"/>
             <Property name="bootstrap.servers">${bootstrap.servers}</Property>
             <MarkerFilter marker="${audit.logmarker}" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -23,7 +23,7 @@
 
         <!-- Kafka Logging Appender forwards all non audit to kafka -->
         <!-- JSONLayout logs with default logging fields , message is a single JSON field -->
-        <Kafka name="kafkaLogAppender" topic="${kafka.topic.logs}">
+        <Kafka name="kafkaLogAppender" topic="aimframework">
             <JSONLayout />
             <Property name="bootstrap.servers">${bootstrap.servers}</Property>
             <MarkerFilter marker="${audit.logmarker}" onMatch="DENY" onMismatch="ACCEPT"/>
